@@ -4,7 +4,7 @@
 #
 Name     : SVT-HEVC
 Version  : 1.4.1
-Release  : 2
+Release  : 3
 URL      : https://github.com/OpenVisualCloud/SVT-HEVC/archive/v1.4.1/svt-hevc-1.4.1.tar.gz
 Source0  : https://github.com/OpenVisualCloud/SVT-HEVC/archive/v1.4.1/svt-hevc-1.4.1.tar.gz
 Summary  : SVT (Scalable Video Technology) for HEVC encoder library
@@ -62,7 +62,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1570223349
+export SOURCE_DATE_EPOCH=1570758114
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -76,10 +76,46 @@ export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
 make  %{?_smp_mflags}  VERBOSE=1
 popd
+mkdir -p clr-build-avx2
+pushd clr-build-avx2
+export GCC_IGNORE_WERROR=1
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 -march=haswell "
+export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 -march=haswell "
+export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 -march=haswell "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 -march=haswell "
+export CFLAGS="$CFLAGS -march=haswell -m64"
+export CXXFLAGS="$CXXFLAGS -march=haswell -m64"
+%cmake ..
+make  %{?_smp_mflags}  VERBOSE=1
+popd
+mkdir -p clr-build-avx512
+pushd clr-build-avx512
+export GCC_IGNORE_WERROR=1
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 -march=skylake-avx512 "
+export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 -march=skylake-avx512 "
+export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 -march=skylake-avx512 "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 -march=skylake-avx512 "
+export CFLAGS="$CFLAGS -march=skylake-avx512 -m64 "
+export CXXFLAGS="$CXXFLAGS -march=skylake-avx512 -m64 "
+%cmake ..
+make  %{?_smp_mflags}  VERBOSE=1
+popd
 
 %install
-export SOURCE_DATE_EPOCH=1570223349
+export SOURCE_DATE_EPOCH=1570758114
 rm -rf %{buildroot}
+pushd clr-build-avx512
+%make_install_avx512  || :
+popd
+pushd clr-build-avx2
+%make_install_avx2  || :
+popd
 pushd clr-build
 %make_install
 popd
@@ -90,15 +126,21 @@ popd
 %files bin
 %defattr(-,root,root,-)
 /usr/bin/SvtHevcEncApp
+/usr/bin/haswell/SvtHevcEncApp
+/usr/bin/haswell/avx512_1/SvtHevcEncApp
 
 %files dev
 %defattr(-,root,root,-)
 /usr/include/svt-hevc/EbApi.h
 /usr/include/svt-hevc/EbApiVersion.h
 /usr/include/svt-hevc/EbErrorCodes.h
+/usr/lib64/haswell/avx512_1/libSvtHevcEnc.so
+/usr/lib64/haswell/libSvtHevcEnc.so
 /usr/lib64/libSvtHevcEnc.so
 /usr/lib64/pkgconfig/SvtHevcEnc.pc
 
 %files lib
 %defattr(-,root,root,-)
+/usr/lib64/haswell/avx512_1/libSvtHevcEnc.so.1
+/usr/lib64/haswell/libSvtHevcEnc.so.1
 /usr/lib64/libSvtHevcEnc.so.1
