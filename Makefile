@@ -1,5 +1,5 @@
 PKG_NAME := SVT-HEVC
-URL = https://github.com/OpenVisualCloud/SVT-HEVC/archive/v1.4.1/svt-hevc-1.4.1.tar.gz
+URL = https://github.com/OpenVisualCloud/SVT-HEVC.git
 ARCHIVES = 
 
 include ../common/Makefile.common

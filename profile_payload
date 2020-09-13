@@ -1,0 +1,6 @@
+./x265 --input /opt/fprofile/harry.y4m --crf 12 --output /dev/null
+./x265 --input /opt/fprofile/eyes.y4m --crf 12 --output /dev/null
+./x265 --input /opt/fprofile/allied.y4m --crf 12 --output /dev/null
+./x265 --input /opt/fprofile/harry2.y4m --crf 12 --output /dev/null
+cd ..
+./SvtHevcEncApp -encMode 2 -rc 1 –tbr 60000000 –nb 500 -i /insilications/gstuff/stuff/things/build/git-clr/fprofile/allied.y4m -b out2.bin 
