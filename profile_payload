@@ -1,6 +1,5 @@
-./x265 --input /opt/fprofile/harry.y4m --crf 12 --output /dev/null
-./x265 --input /opt/fprofile/eyes.y4m --crf 12 --output /dev/null
-./x265 --input /opt/fprofile/allied.y4m --crf 12 --output /dev/null
-./x265 --input /opt/fprofile/harry2.y4m --crf 12 --output /dev/null
-cd ..
-./SvtHevcEncApp -encMode 2 -rc 1 –tbr 60000000 –nb 500 -i /insilications/gstuff/stuff/things/build/git-clr/fprofile/allied.y4m -b out2.bin 
+export LD_LIBRARY_PATH=".:$LD_LIBRARY_PATH"
+../Bin/RelWithDebInfo/SvtHevcEncApp -encMode 4 -rc 1 –tbr 60000000 –nb 500 -i /opt/fprofile/harry.y4m
+../Bin/RelWithDebInfo/SvtHevcEncApp -encMode 4 -rc 1 –tbr 60000000 –nb 500 -i /opt/fprofile/eyes.y4m
+../Bin/RelWithDebInfo/SvtHevcEncApp -encMode 4 -rc 1 –tbr 60000000 –nb 500 -i /opt/fprofile/allied.y4m
+../Bin/RelWithDebInfo/SvtHevcEncApp -encMode 4 -rc 1 –tbr 60000000 –nb 500 -i /opt/fprofile/harry2.y4m
