@@ -1,5 +1,5 @@
-export LD_LIBRARY_PATH=".:../Bin/RelWithDebInfo:$LD_LIBRARY_PATH"
-../Bin/RelWithDebInfo/SvtHevcEncApp -encMode 4 -rc 1 –tbr 60000000 –nb 500 -i /opt/fprofile/harry.y4m
-../Bin/RelWithDebInfo/SvtHevcEncApp -encMode 4 -rc 1 –tbr 60000000 –nb 500 -i /opt/fprofile/eyes.y4m
-../Bin/RelWithDebInfo/SvtHevcEncApp -encMode 4 -rc 1 –tbr 60000000 –nb 500 -i /opt/fprofile/allied.y4m
-../Bin/RelWithDebInfo/SvtHevcEncApp -encMode 4 -rc 1 –tbr 60000000 –nb 500 -i /opt/fprofile/harry2.y4m
+export LD_LIBRARY_PATH=".:../Bin/Release:$LD_LIBRARY_PATH"
+../Bin/Release/SvtHevcEncApp -encMode 4 -rc 1 –tbr 60000000 –nb 500 -i /opt/fprofile/harry.y4m
+../Bin/Release/SvtHevcEncApp -encMode 4 -rc 1 –tbr 60000000 –nb 500 -i /opt/fprofile/eyes.y4m
+../Bin/Release/SvtHevcEncApp -encMode 4 -rc 1 –tbr 60000000 –nb 500 -i /opt/fprofile/allied.y4m
+../Bin/Release/SvtHevcEncApp -encMode 4 -rc 1 –tbr 60000000 –nb 500 -i /opt/fprofile/harry2.y4m
