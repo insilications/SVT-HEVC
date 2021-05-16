@@ -33,3 +33,5 @@ Z3-dev
 Z3-staticdev
 zlib-dev
 zlib-staticdev
+nasm
+nasm-bin
